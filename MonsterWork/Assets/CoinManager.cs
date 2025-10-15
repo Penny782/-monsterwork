@@ -17,7 +17,8 @@ namespace DummyNamespace{  //強制進入
         [Header("🔹 金錢數值設定")]
         private int totalCoins = 0;              // 玩家已收集的總寶錢
         private float uncollectedCoins = 0f;     // 掛機累積中的寶錢
-        public int coinsPerSecond = 5;           // 每秒掛機產生的寶錢
+        public int coinsPerSecond = 20;           // 每秒掛機產生的寶錢
+        internal int TotalCoins;
 
         // Start is called before the first frame update
         private void Start()
@@ -53,11 +54,22 @@ namespace DummyNamespace{  //強制進入
         // 🟣 更新畫面上兩個 TextMeshPro 顯示
         private void UpdateUI()
         {
+            // 更新實際總寶錢
+            TotalCoins = totalCoins;
+
             // 顯示總寶錢（上方 UI）
             coinTextMoneyUI.text = $"寶錢：{totalCoins:N0}";
 
             // 顯示掛機累積金錢（按鈕上）
             coinTextOnButton.text = $"+{uncollectedCoins:F1}";
+
+        }
+
+
+        //提供其他系統讀取總金額(任務系統用)
+        public int GetTotalCoins()
+        {
+            return totalCoins;
         }
 
     }
